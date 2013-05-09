@@ -46,4 +46,12 @@ if (BUILD_EXECUTABLE)
     install(TARGETS ${PROJECT_NAME}_bin
             RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin
     )
+
+    set(SRC_FILES Plugin.cpp)
+    add_executable(${PROJECT_NAME}_plugin ${SRC_FILES})
+    target_link_libraries(${PROJECT_NAME}_plugin ${LIBS} ${PROJECT_NAME}_lib)
+    set_target_properties(${PROJECT_NAME}_plugin PROPERTIES OUTPUT_NAME ${PROJECT_NAME}_stuff)
+    install(TARGETS ${PROJECT_NAME}_plugin
+            RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin
+    )
 endif()
