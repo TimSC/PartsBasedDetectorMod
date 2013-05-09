@@ -36,16 +36,16 @@ if (catkin_FOUND)
     )
     endif()
     # deal with cvmatio
-    find_package(cvmatio QUIET) 
-    include_directories(SYSTEM ${cvmatio_INCLUDE_DIRS})
+    include_directories(../cvmatio/include)
+    find_library(cvmatio_LIBRARIES cvmatio PATHS ../cvmatio/lib)
 else()
     set(WITH_CATKIN OFF)
     set(WITH_ECTO   OFF)
     set(WITH_ROS    OFF)
     project(PartsBasedDetector)
     # find cvmatio manually
-    include_directories(../cvmatio/include)
-    find_library(cvmatio_LIBRARIES cvmatio PATHS ../cvmatio/lib)
+    include_directories(./cvmatio/include)
+    find_library(cvmatio_LIBRARIES cvmatio PATHS ./cvmatio/lib)
 endif()
 
 # -----------------------------------------------
