@@ -36,8 +36,8 @@ if (catkin_FOUND)
     )
     endif()
     # deal with cvmatio
-    include_directories(../cvmatio/include)
-    find_library(cvmatio_LIBRARIES cvmatio PATHS ../cvmatio/lib)
+    find_package(cvmatio QUIET) 
+    include_directories(SYSTEM ${cvmatio_INCLUDE_DIRS})
 else()
     set(WITH_CATKIN OFF)
     set(WITH_ECTO   OFF)
@@ -110,6 +110,9 @@ endif()
 # -----------------------------------------------
 # add the main executable/library
 add_subdirectory(src)
+
+# add cvmatio
+add_subdirectory(cvmatio)
 
 # add documentation
 if(BUILD_DOC)
